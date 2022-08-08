@@ -2,7 +2,7 @@
   "name": "matter-js-test",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Mitsuya.WATANABE <watanabe@gocco.co.jp>",
+  "author": "greznik.github.io",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
