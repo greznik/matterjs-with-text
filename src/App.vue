@@ -1,104 +1,192 @@
-<style>
+<style lang="scss">
+.animation-container {
+  @apply relative flex mx-auto w-286px h-274px;
 
-#box, #box1 {
-  cursor: move;
-  user-select: none;
-  border: 1px solid #000000;
-  border-radius: 16px;
-  padding: 20px 24px;
-  font-weight: 700;
-  font-size: 44px;
-  line-height: 53px;
-  text-align: center;
-  width: fit-content;
-}
-.box1 {
-  background: #6367E7;
-  border: 3px solid #000000;
-  border-radius: 8px;
-  color: #FFFFFF;
-}
-.box2 {
-  padding: 20px 24px;
-  background: #F3F464;
-  color: #000000;
-}
-.box3 {
-  color: #000000;
-  background: tranparent;
-}
-#ground {
-  position: absolute;
-  background: #666;
-  top: 1050px;
-  height: 10px;
-  width: 100%;
-}
-.wrapper {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: 80vh;
-}
-html,
-body {
-  position: relative;
-  height: 100%;
-  margin: 0;
+  @screen lg {
+    @apply w-993px h-485px;
+  }
+
+  .block {
+    @apply absolute flex items-center justify-center h-54px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 22px;
+    color: #000000;
+    background: transparent;
+    cursor: move;
+    user-select: none;
+
+    @screen lg {
+      @apply h-100px;
+      font-size: 44px;
+      line-height: 44px;
+      border: 3px solid #000000;
+    }
+  }
+
+  .block1 {
+    @apply w-93px h-50px;
+    left: -2px;
+    top: 15px;
+    border-radius: 16px;
+
+    @screen lg {
+      @apply w-177px h-93px;
+      left: 38px;
+      top: 101px;
+    }
+  }
+
+  .block2 {
+    @apply w-113px h-70px;
+    left: 88px;
+    top: -5px;
+    background: #7e3cf5;
+    color: #ffffff;
+
+    @screen lg {
+      @apply w-244px h-130px;
+      left: 212px;
+      top: 63px;
+      font-size: 52px;
+    }
+  }
+
+  .block3 {
+    @apply w-79px;
+    left: 200px;
+    top: 10px;
+    background: #7e3cf5;
+    color: #ffffff;
+
+    @screen lg {
+      @apply w-148px h-100px;
+      left: 453px;
+      top: -4px;
+    }
+  }
+
+  .block4 {
+    @apply w-201px;
+    left: 10px;
+    top: 63px;
+    background: #ff7d25;
+    color: #ffffff;
+    border-radius: 16px;
+
+    @screen lg {
+      @apply w-391px h-100px;
+      left: 453px;
+      top: 93px;
+    }
+  }
+
+  .block5 {
+    @apply w-72px;
+    left: 209px;
+    top: 63px;
+    border-radius: 76px;
+
+    @screen lg {
+      @apply w-133px;
+      left: -2px;
+      top: 191px;
+    }
+  }
+
+  .block6 {
+    @apply w-157px h-66px;
+    left: -1px;
+    top: 115px;
+
+    @screen lg {
+      @apply w-303px h-130px;
+      left: 128px;
+      top: 191px;
+    }
+  }
+
+  .block7 {
+    @apply w-132px;
+    left: 153px;
+    top: 115px;
+    border-radius: 16px;
+
+    @screen lg {
+      @apply w-253px;
+      left: 429px;
+      top: 191px;
+    }
+  }
+
+  .block8 {
+    @apply w-163px h-78px;
+    left: -1px;
+    top: 179px;
+
+    @screen lg {
+      @apply w-315px h-100px;
+      left: 680px;
+      top: 191px;
+    }
+  }
+
+  .block9 {
+    @apply w-126px;
+    left: 160px;
+    top: 167px;
+    background: #ff7d25;
+    color: #ffffff;
+
+    @screen lg {
+      @apply w-264px;
+      left: 456px;
+      top: 288px;
+      border-radius: 16px;
+    }
+  }
+
+  .block10 {
+    @apply w-68px;
+    left: 159px;
+    top: 219px;
+    border-radius: 76px;
+
+    @screen lg {
+      @apply w-125px;
+      left: 717px;
+      top: 288px;
+    }
+  }
 }
 </style>
 
-<template>
-  <div id="app">
-      <div id="box" class="box1">
-        Java
-      </div>
-      <div class="wrapper">
-        <div>
-          <div id="box" class="box2">
-            для
-          </div>
-          <div id="box" class="box2">
-            разработки
-          </div>
-          <div id="box" class="box2">
-            проектов
-          </div>
-          <div id="box" class="box2">
-            крупнейших
-          </div>
-        </div>
-       <div class="first">
-          <div id="box" class="box3">
-            ищем
-          </div>
-          <div id="box" class="box2">
-            лучших
-          </div>
-          <div id="box" class="box2">
-            программистов
-          </div>
-       </div>
-      </div>
-    <div id="ground"></div>
-  </div>
+<template lang="pug">
+.animation-container
+  .block.block1 Ищем
+  .block.block2 лучших
+  .block.block3 Java
+  .block.block4 программистов
+
+  .block.block5 для
+  .block.block6 разработки
+  .block.block7 проектов
+  .block.block8 крупнейших
+  .block.block9 компаний
+  .block.block10 РФ
 </template>
 
 <script>
-// import { init } from './script'
 import Matter from 'matter-js'
-// import { init } from './test'
 export default {
   name: 'App',
   mounted () {
-    // this.init()
+    this.init()
   },
   methods: {
     init () {
-      const listEls = document.querySelectorAll('#box')
+      const listEls = document.querySelectorAll('.block')
       const engine = Matter.Engine.create()
 
       const stack = Matter.Composites.stack(
@@ -114,13 +202,13 @@ export default {
           return Matter.Bodies.rectangle(x, y, width, height, {
             isStatic: false
           })
-        }
+        },
       )
-      const ground = Matter.Bodies.rectangle(window.innerWidth / 2, 1050, window.innerWidth, 100, {
+      const ground = Matter.Bodies.rectangle(window.innerWidth / 2, 490, window.innerWidth, 10, {
         isStatic: true
       })
       const mouseConstraint = Matter.MouseConstraint.create(engine, {
-        element: document.body
+        element: document.querySelector('.animation-container')
       })
       listEls.forEach((e) => {
         e.style.position = 'absolute'
