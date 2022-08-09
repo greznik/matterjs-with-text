@@ -1,48 +1,48 @@
 <style>
-#mjs-wrapper {
-  /* position this element */
-  margin: 1em;
-  height: 100%;
-}
-#mjs-wrapper ul {
-  font-size: 14pt;
-  list-style: none;
-  user-select: none;
-  position: relative;
-}
-#mjs-wrapper li {
-  background: #fff;
-  border: 1px solid #555;
-  display: inline-block;
-  padding: 1em;
-  cursor: move;
-}
-#mjs-wrapper li:hover {
-  background: #f2f2f2;
-}
-#box {
-  position: absolute;
-  background: #111;
-  color: #eee;
-  height: 80px;
-  width: 140px;
-  cursor: move;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Amatic SC';
-  text-shadow: 2px 2px 3px #38e;
-}
 
+#box, #box1 {
+  cursor: move;
+  user-select: none;
+  border: 1px solid #000000;
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 53px;
+  text-align: center;
+  width: fit-content;
+}
+.box1 {
+  background: #6367E7;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  color: #FFFFFF;
+}
+.box2 {
+  padding: 20px 24px;
+  background: #F3F464;
+  color: #000000;
+}
+.box3 {
+  color: #000000;
+  background: tranparent;
+}
 #ground {
   position: absolute;
   background: #666;
-  top: 350px;
+  top: 1050px;
   height: 10px;
-  width: 400px;
+  width: 100%;
 }
-
+.wrapper {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+}
 html,
 body {
   position: relative;
@@ -53,27 +53,39 @@ body {
 
 <template>
   <div id="app">
-    <!-- <div id="mjs-wrapper">
-      <ul>
-        <li>Foo</li>
-        <li>Bar</li>
-        <li>Baz</li>
-        <li>Quux</li>
-        <li>Garply</li>
-        <li>Corge</li>
-      </ul>
-    </div> -->
-    <div id="box">
-      <h1>hello world</h1>
-    </div>
-    <div id="box">
-      <h1>hello world</h1>
-    </div>
+      <div id="box" class="box1">
+        Java
+      </div>
+      <div class="wrapper">
+        <div>
+          <div id="box" class="box2">
+            для
+          </div>
+          <div id="box" class="box2">
+            разработки
+          </div>
+          <div id="box" class="box2">
+            проектов
+          </div>
+          <div id="box" class="box2">
+            крупнейших
+          </div>
+        </div>
+       <div class="first">
+          <div id="box" class="box3">
+            ищем
+          </div>
+          <div id="box" class="box2">
+            лучших
+          </div>
+          <div id="box" class="box2">
+            программистов
+          </div>
+       </div>
+      </div>
     <div id="ground"></div>
   </div>
 </template>
-
-<style></style>
 
 <script>
 // import { init } from './script'
@@ -81,14 +93,8 @@ import Matter from 'matter-js'
 // import { init } from './test'
 export default {
   name: 'App',
-  data () {
-    return {
-      engine: null,
-      box: null
-    }
-  },
   mounted () {
-    this.init()
+    // this.init()
   },
   methods: {
     init () {
@@ -97,8 +103,8 @@ export default {
 
       const stack = Matter.Composites.stack(
         // xx, yy, columns, rows, columnGap, rowGap, cb
-        2,
-        2,
+        0,
+        0,
         listEls.length,
         1,
         0,
@@ -110,20 +116,25 @@ export default {
           })
         }
       )
-      const ground = Matter.Bodies.rectangle(200, 360, 1000, 10, {
+      const ground = Matter.Bodies.rectangle(window.innerWidth / 2, 1050, window.innerWidth, 100, {
         isStatic: true
       })
       const mouseConstraint = Matter.MouseConstraint.create(engine, {
         element: document.body
       })
+      listEls.forEach((e) => {
+        e.style.position = 'absolute'
+      })
       Matter.Composite.add(engine.world, [stack, ground, mouseConstraint]);
       (function rerender () {
         stack.bodies.forEach((block, i) => {
-          const li = listEls[i]
+          const el = listEls[i]
           const { x, y } = block.vertices[0]
-          li.style.top = `${y}px`
-          li.style.left = `${x}px`
-          li.style.transform = `rotate(${block.angle}rad)`
+          el.style.top = `${y}px`
+          el.style.left = `${x}px`
+          el.style.transform = `translate(-50%, -50%)
+                                rotate(${block.angle}rad)
+                                translate(50%, 50%)`
         })
         Matter.Engine.update(engine)
         requestAnimationFrame(rerender)
